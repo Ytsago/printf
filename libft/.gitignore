@@ -1,0 +1,4 @@
+*.o
+.Obj
+*.a
+libftTester
