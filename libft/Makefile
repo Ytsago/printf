@@ -39,7 +39,7 @@ all: $(NAME)
 	
 
 $(NAME) : $(OBJS) 
-	@echo "$(YELLOW)Creating  library : $(RED)$(NAME)...$(RESET)"
+	@echo "$(YELLOW)Creating  library : $(BLUE)$(NAME)...$(RESET)"
 	@$(AR) $(ARFLAG) $@ $? && echo "$(GREEN)$(NAME) created successfully !$(RESET)"
 	
 

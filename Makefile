@@ -30,7 +30,7 @@ NAME = libftprintf.a
 all: $(NAME)
 
 $(NAME) : $(OBJS) $(LIB)
-	@echo "$(YELLOW)Creating final product : $(RED)$@...$(RESET)"
+	@echo "$(YELLOW)Creating final product : $(BLUE)$@...$(RESET)"
 	@$(AR) x $(LIB)
 	@$(AR) $(ARFLAG) $@ $< *.o && echo "$(GREEN)$@ Created successfully !$(RESET)"
 	@rm -f *.o
