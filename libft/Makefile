@@ -48,11 +48,10 @@ bonus:
 
 
 $(OBJDIR)/%.o: %.c $(INC) | $(OBJDIR) msg
-	@$(CC) -c $(CFLAGS) $< -o $@
+	$(CC) -c $(CFLAGS) $< -o $@
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
-	@echo "$(YELLOW)Compiling...$(RESET)"
 
 clean:
 	@rm -rf $(OBJDIR)

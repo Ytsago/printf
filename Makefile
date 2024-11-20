@@ -37,10 +37,11 @@ $(NAME) : $(OBJS) $(LIB)
 	
 
 $(OBJDIR)%.o: $(SRCDIR)%.c | $(OBJDIR)
-	@$(CC) -c $(CFLAGS) -I$(INC) -I $(LIB_D) $< -o $@
+	$(CC) -c $(CFLAGS) -I$(INC) -I $(LIB_D) $< -o $@
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
+	@echo "$(YELLOW)Compiling...$(RESET)"
 
 $(LIB): FORCE
 	@$(MAKE) bonus -C $(LIB_D) --no-print-directory
