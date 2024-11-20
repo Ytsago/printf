@@ -3,6 +3,12 @@ CC = cc
 AR = ar
 ARFLAG = -rcs
 
+GREEN  = \033[32m
+YELLOW = \033[33m
+BLUE   = \033[34m
+RED    = \033[31m
+RESET  = \033[0m
+
 LIBC =	ft_isdigit.c ft_isalpha.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_tolower.c \
 		ft_toupper.c ft_bzero.c ft_memset.c ft_memcpy.c ft_memmove.c ft_memchr.c \
 		ft_memcmp.c ft_strlen.c ft_strlcpy.c ft_strlcat.c ft_strncmp.c ft_strchr.c \
@@ -30,26 +36,30 @@ BOBJS = $(BSRCS:%.c=$(OBJDIR)/%.o)
 NAME = libft.a
 
 all: $(NAME)
+	
 
 $(NAME) : $(OBJS) 
-	$(AR) $(ARFLAG) $@ $?
+	@echo "$(YELLOW)Creating  library : $(RED)$(NAME)...$(RESET)"
+	@$(AR) $(ARFLAG) $@ $?
+	@echo "$(GREEN)$(NAME) created successfully !$(RESET)"
 
 bonus: 
 	@$(MAKE) --no-print-directory OBJS="$(BOBJS)"
 
 
-$(OBJDIR)/%.o: %.c $(INC) | $(OBJDIR)
-	$(CC) -c $(CFLAGS) $< -o $@
+$(OBJDIR)/%.o: %.c $(INC) | $(OBJDIR) msg
+	@$(CC) -c $(CFLAGS) $< -o $@
 
 $(OBJDIR):
-	mkdir -p $(OBJDIR)
+	@mkdir -p $(OBJDIR)
+	@echo "$(YELLOW)Compiling...$(RESET)"
 
 clean:
-	rm -rf $(OBJDIR)
+	@rm -rf $(OBJDIR)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: clean fclean re all bonus
+.PHONY: clean fclean re all bonus msg

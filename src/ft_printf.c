@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:38:20 by secros            #+#    #+#             */
-/*   Updated: 2024/11/20 13:32:34 by secros           ###   ########.fr       */
+/*   Updated: 2024/11/20 15:44:06 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static ssize_t	ft_print_data(char s, va_list args)
 	ssize_t	i;
 	char	*str;
 
-	i = 0;
+	i = -1;
 	if (s == 'c')
 		i = ft_putchar_fd(va_arg(args, int), 1);
 	if (s == 's')
@@ -90,7 +90,10 @@ int	ft_printf(const char *s, ...)
 	va_start(args, s);
 	len = ft_printstr(s, args);
 	if (len == -1)
-		return (write(1, "\n Oups something went wrong", 28));
+	{
+		write(2, "Oups something went wrong", 26);
+		return (len);
+	}
 	va_end(args);
 	return (len);
 }

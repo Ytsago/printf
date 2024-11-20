@@ -3,6 +3,12 @@ CC = cc
 AR = ar
 ARFLAG = -rcs
 
+GREEN  = \033[32m
+YELLOW = \033[33m
+BLUE   = \033[34m
+RED    = \033[31m
+RESET  = \033[0m
+
 FILE = ft_printf.c
 
 LIB_D = libft/
@@ -24,26 +30,32 @@ NAME = libftprintf.a
 all: $(NAME)
 
 $(NAME) : $(OBJS) $(LIB)
-	$(AR) x $(LIB)
-	$(AR) $(ARFLAG) $@ $< *.o
-	rm -f *.o
+	@echo "$(YELLOW)Creating final product : $(RED)$@...$(RESET)"
+	@$(AR) x $(LIB)
+	@$(AR) $(ARFLAG) $@ $< *.o
+	@rm -f *.o
+	@echo "$(GREEN)$@ Created successfully !$(RESET)"
 
 $(OBJDIR)%.o: $(SRCDIR)%.c | $(OBJDIR)
-	$(CC) -c $(CFLAGS) -I$(INC) -I $(LIB_D) $< -o $@
+	@$(CC) -c $(CFLAGS) -I$(INC) -I $(LIB_D) $< -o $@
 
 $(OBJDIR):
-	mkdir -p $(OBJDIR)
+	@mkdir -p $(OBJDIR)
 
 $(LIB): FORCE
 	@$(MAKE) bonus -C $(LIB_D) --no-print-directory
 
 clean:
-	rm -rf $(OBJDIR)
-	$(MAKE) $@ -C $(LIB_D) --no-print-directory
+	@echo "$(RED)Deleting object files...$(RESET)"
+	@rm -rf $(OBJDIR)
+	@$(MAKE) $@ -C $(LIB_D) --no-print-directory
+	@echo "$(GREEN)Done !$(RESET)"
 
 fclean: clean
-	rm -f $(NAME)
+	@echo "$(RED)Deleting executable or library $(NAME)...$(RESET)"
+	@rm -f $(NAME)
 	@$(MAKE) $@ -C $(LIB_D) --no-print-directory
+	@echo "$(GREEN)Done !$(RESET)"
 
 re: fclean all
 
