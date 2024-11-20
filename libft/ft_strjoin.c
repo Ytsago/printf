@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 17:36:35 by secros            #+#    #+#             */
-/*   Updated: 2024/11/09 18:09:06 by secros           ###   ########.fr       */
+/*   Updated: 2024/11/20 10:37:48 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,19 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	len1;
 	size_t	len2;
 
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
+	len1 = 0;
+	len2 = 0;
+	while(s1[len1])
+		len1++;
+	while(s2[len2])
+		len2++;
 	fs = (char *) malloc(sizeof(char) * (len1 + len2 + 1));
 	if (!fs)
 		return (NULL);
-	ft_strlcat(fs, s2, (ft_strlcpy(fs, s1, len1 + 1) + len2 + 1));
+	fs[len1 + len2] = '\0';
+	while ((len2--))
+		fs[len1 + len2] = s2[len2];
+	while(len1--)
+		fs[len1] = s1[len1];
 	return (fs);
 }
