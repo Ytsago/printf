@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:38:20 by secros            #+#    #+#             */
-/*   Updated: 2024/11/19 14:17:03 by secros           ###   ########.fr       */
+/*   Updated: 2024/11/20 13:32:34 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static ssize_t	ft_putlenstr(const char *s, size_t i)
 	j = 0;
 	while (s[i + j] && s[i + j] != '%')
 		j++;
-	write(1, &s[i], j);
+	j = write(1, &s[i], j);
 	return (j);
 }
 
