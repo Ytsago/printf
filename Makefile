@@ -32,9 +32,9 @@ all: $(NAME)
 $(NAME) : $(OBJS) $(LIB)
 	@echo "$(YELLOW)Creating final product : $(RED)$@...$(RESET)"
 	@$(AR) x $(LIB)
-	@$(AR) $(ARFLAG) $@ $< *.o
+	@$(AR) $(ARFLAG) $@ $< *.o && echo "$(GREEN)$@ Created successfully !$(RESET)"
 	@rm -f *.o
-	@echo "$(GREEN)$@ Created successfully !$(RESET)"
+	
 
 $(OBJDIR)%.o: $(SRCDIR)%.c | $(OBJDIR)
 	@$(CC) -c $(CFLAGS) -I$(INC) -I $(LIB_D) $< -o $@
@@ -47,15 +47,15 @@ $(LIB): FORCE
 
 clean:
 	@echo "$(RED)Deleting object files...$(RESET)"
-	@rm -rf $(OBJDIR)
+	@rm -rf $(OBJDIR) && echo "$(GREEN)Done !$(RESET)"
 	@$(MAKE) $@ -C $(LIB_D) --no-print-directory
-	@echo "$(GREEN)Done !$(RESET)"
+	
 
 fclean: clean
 	@echo "$(RED)Deleting executable or library $(NAME)...$(RESET)"
-	@rm -f $(NAME)
+	@rm -f $(NAME) && echo "$(GREEN)Done !$(RESET)"
 	@$(MAKE) $@ -C $(LIB_D) --no-print-directory
-	@echo "$(GREEN)Done !$(RESET)"
+	
 
 re: fclean all
 

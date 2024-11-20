@@ -40,8 +40,8 @@ all: $(NAME)
 
 $(NAME) : $(OBJS) 
 	@echo "$(YELLOW)Creating  library : $(RED)$(NAME)...$(RESET)"
-	@$(AR) $(ARFLAG) $@ $?
-	@echo "$(GREEN)$(NAME) created successfully !$(RESET)"
+	@$(AR) $(ARFLAG) $@ $? && echo "$(GREEN)$(NAME) created successfully !$(RESET)"
+	
 
 bonus: 
 	@$(MAKE) --no-print-directory OBJS="$(BOBJS)"
